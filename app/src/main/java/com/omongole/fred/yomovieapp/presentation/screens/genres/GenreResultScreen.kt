@@ -68,7 +68,7 @@ fun GenreResultScreen(
         LazyColumn{
             items(
                 count = movies.itemCount,
-                key = movies.itemKey { it.id },
+                //key = movies.itemKey { it.id },
                 contentType = movies.itemContentType{"contentType" }
             ) {
                 movies[it]?.let {

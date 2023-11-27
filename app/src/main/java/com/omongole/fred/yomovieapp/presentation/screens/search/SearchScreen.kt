@@ -105,7 +105,7 @@ fun SearchScreen(
                     LazyVerticalGrid(columns = GridCells.Fixed(2),contentPadding = PaddingValues(5.dp) ) {
                         items(
                             count = trendingMovies.itemCount,
-                            key = trendingMovies.itemKey { it.id },
+                            //key = trendingMovies.itemKey { it.id },
                             contentType = trendingMovies.itemContentType{"contentType" }
                         ) {
                             val movie = trendingMovies[it]

@@ -102,7 +102,7 @@ fun ShowsScreen(
             ) {
                 items(
                     count = onAirTvShows.itemCount,
-                    key = onAirTvShows.itemKey { it.id },
+                    //key = onAirTvShows.itemKey { it.id },
                     contentType = onAirTvShows.itemContentType{"contentType" }
                 ) {
                     onAirTvShows[it]?.let {
@@ -148,7 +148,7 @@ fun ShowsScreen(
             ) {
                 items(
                     count = topRatedTvShows.itemCount,
-                    key = topRatedTvShows.itemKey { it.id },
+                    //key = topRatedTvShows.itemKey { it.id },
                     contentType = topRatedTvShows.itemContentType{"contentType" }
                 ) {
                     topRatedTvShows[it]?.let {
@@ -194,7 +194,7 @@ fun ShowsScreen(
             ) {
                 items(
                     count = popularTvShows.itemCount,
-                    key = popularTvShows.itemKey { it.id },
+                    //key = popularTvShows.itemKey { it.id },
                     contentType = popularTvShows.itemContentType{"contentType" }
                 ) {
                     popularTvShows[it]?.let {

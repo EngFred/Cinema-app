@@ -106,7 +106,7 @@ fun HomeScreen(
             ) {
                 items(
                     count = nowPlayingMovies.itemCount,
-                    key = nowPlayingMovies.itemKey { it.id },
+                    //key = nowPlayingMovies.itemKey { it.id },
                     contentType = nowPlayingMovies.itemContentType{"contentType" }
                 ) {
                     nowPlayingMovies[it]?.let {
@@ -151,7 +151,7 @@ fun HomeScreen(
             ) {
                 items(
                     count = upComingMovies.itemCount,
-                    key = upComingMovies.itemKey { it.id },
+                    //key = upComingMovies.itemKey { it.id },
                     contentType = upComingMovies.itemContentType{"contentType" }
                 ) {
                     upComingMovies[it]?.let {
@@ -196,7 +196,7 @@ fun HomeScreen(
             ) {
                 items(
                     count = topRatedMovies.itemCount,
-                    key = topRatedMovies.itemKey { it.id },
+                    //key = topRatedMovies.itemKey { it.id },
                     contentType = topRatedMovies.itemContentType{"contentType" }
                 ) {
                     topRatedMovies[it]?.let {
@@ -242,7 +242,7 @@ fun HomeScreen(
             ) {
                 items(
                     count = popularMovies.itemCount,
-                    key = popularMovies.itemKey { it.id },
+                    //key = popularMovies.itemKey { it.id },
                     contentType = popularMovies.itemContentType{"contentType" }
                 ) {
                     popularMovies[it]?.let {
