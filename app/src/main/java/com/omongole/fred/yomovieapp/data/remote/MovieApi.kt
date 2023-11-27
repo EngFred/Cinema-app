@@ -1,0 +1,92 @@
+package com.omongole.fred.yomovieapp.data.remote
+
+import com.omongole.fred.yomovieapp.util.Constants.API_KEY
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
+interface MovieApi {
+
+    @GET("movie/upcoming?api_key=${API_KEY}")
+    suspend fun fetchUpComingMovies(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : MoviesResponse
+
+    @GET("movie/now_playing?api_key=${API_KEY}")
+    suspend fun fetchNowPlayingMovies(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : MoviesResponse
+
+    @GET("movie/popular?api_key=${API_KEY}")
+    suspend fun fetchPopularMovies(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : MoviesResponse
+
+    @GET("movie/top_rated?api_key=${API_KEY}")
+    suspend fun fetchTopRatedMovies(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : MoviesResponse
+
+    @GET("trending/movie/week?api_key=${API_KEY}")
+    suspend fun fetchTrendingMovies(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : MoviesResponse
+
+    @GET("search/movie?api_key=${API_KEY}")
+    suspend fun searchMovies(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int,
+        @Query("query") query: String
+    ) : MoviesResponse
+
+    @GET("search/tv?api_key=${API_KEY}")
+    suspend fun searchShows(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int,
+        @Query("query") query: String
+    ) : ShowResponse
+
+    @GET("movie/{movie_id}?api_key=${API_KEY}")
+    suspend fun fetchMovieDetail(
+        @Path("movie_id") movieId: Int
+    ) : MovieDetailResponse
+
+    @GET("tv/{series_id}?api_key=${API_KEY}")
+    suspend fun fetchShowDetail(
+        @Path("series_id") showId: Int
+    ) : ShowDetailResponse
+
+    @GET("tv/top_rated?api_key=${API_KEY}")
+    suspend fun fetchTopRatedTvShows(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : ShowResponse
+
+    @GET("tv/popular?api_key=${API_KEY}")
+    suspend fun fetchPopularTvShows(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : ShowResponse
+
+    @GET("tv/airing_today?api_key=${API_KEY}")
+    suspend fun fetchOnAirTvShows(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int
+    ) : ShowResponse
+
+    @GET("genre/movie/list?api_key=${API_KEY}")
+    suspend fun fetchMoviesGenre() : GenresResponse
+
+    @GET("discover/movie?api_key=${API_KEY}")
+    suspend fun fetchMoviesByGenre(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int,
+        @Query("with_genres") genreId: Long
+    ) : MoviesResponse
+
+}
