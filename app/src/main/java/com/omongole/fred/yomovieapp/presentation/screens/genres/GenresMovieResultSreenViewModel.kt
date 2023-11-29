@@ -9,7 +9,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class GenreResultScreenViewModel @AssistedInject constructor(
+class GenresMovieResultScreenViewModel @AssistedInject constructor(
     getMoviesByGenreUseCase: GetMoviesByGenreUseCase,
     @Assisted private val genreId: Long
 ) : ViewModel() {
@@ -20,9 +20,9 @@ class GenreResultScreenViewModel @AssistedInject constructor(
 
 
 @Suppress("UNCHECKED_CAST")
-class GenreResultScreenViewModelFactory(
+class GenresMovieResultScreenViewModelFactory(
     private val genreId: Long,
-    private val assistedFactory: GenreResultViewModelAssistedFactory
+    private val assistedFactory: GenresMovieResultViewModelAssistedFactory
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return assistedFactory.create( genreId ) as T
@@ -30,6 +30,6 @@ class GenreResultScreenViewModelFactory(
 }
 
 @AssistedFactory
-interface GenreResultViewModelAssistedFactory {
-    fun create( genreId: Long ) : GenreResultScreenViewModel
+interface GenresMovieResultViewModelAssistedFactory {
+    fun create( genreId: Long ) : GenresMovieResultScreenViewModel
 }

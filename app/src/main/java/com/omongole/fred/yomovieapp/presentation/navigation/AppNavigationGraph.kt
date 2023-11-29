@@ -1,5 +1,6 @@
 package com.omongole.fred.yomovieapp.presentation.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -13,10 +14,16 @@ import com.omongole.fred.yomovieapp.presentation.screens.detail.MovieDetailScree
 import com.omongole.fred.yomovieapp.presentation.screens.detail.MovieDetailScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.detail.ShowDetailScreen
 import com.omongole.fred.yomovieapp.presentation.screens.detail.ShowDetailScreenViewModelAssistedFactory
-import com.omongole.fred.yomovieapp.presentation.screens.genres.GenreResultScreen
-import com.omongole.fred.yomovieapp.presentation.screens.genres.GenreResultViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.screens.genres.GenreShowsResultScreen
+import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresMovieResultScreen
+import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresMovieResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresScreen
+import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresShowsResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.home.HomeScreen
+import com.omongole.fred.yomovieapp.presentation.screens.player.MoviePreviewPlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.screens.player.MoviesPlayerScreen
+import com.omongole.fred.yomovieapp.presentation.screens.player.ShowsPlayerScreen
+import com.omongole.fred.yomovieapp.presentation.screens.player.ShowsPreviewPlayerScreenViewModel
 import com.omongole.fred.yomovieapp.presentation.screens.search.MoviesSearchResultScreen
 import com.omongole.fred.yomovieapp.presentation.screens.search.MoviesSearchResultScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.search.SearchScreen
@@ -27,11 +34,15 @@ import com.omongole.fred.yomovieapp.presentation.screens.shows.ShowsSearchResult
 @Composable
 fun AppNavigationGraph(
     navHostController: NavHostController,
-    genresAssistedFactory: GenreResultViewModelAssistedFactory,
+    moviesGenresAssistedFactory: GenresMovieResultViewModelAssistedFactory,
+    showsGenresAssistedFactory: GenresShowsResultViewModelAssistedFactory,
     moviesSearchAssistedFactory: MoviesSearchResultScreenViewModelAssistedFactory,
     showsSearchAssistedFactory: ShowsSearchResultScreenViewModelAssistedFactory,
     movieDetailAssistedFactory: MovieDetailScreenViewModelAssistedFactory,
     showDetailAssistedFactory: ShowDetailScreenViewModelAssistedFactory,
+    moviesPlayerAssistedFactory: MoviePreviewPlayerScreenViewModel.MoviePreviewPlayerScreenViewModelAssistedFactory,
+    showsPlayerAssistedFactory: ShowsPreviewPlayerScreenViewModel.ShowsPreviewPlayerScreenViewModelAssistedFactory,
+
     modifier: Modifier,
     sharedViewModel: SharedViewModel,
     darkTheme: Boolean
@@ -95,12 +106,14 @@ fun AppNavigationGraph(
 
         composable(route= Route.Genre.destination ) {
             GenresScreen(modifier = modifier, fetchMoviesByGenre = {
-                navHostController.navigate("${Route.GenreMovies.destination}/$it")
+                navHostController.navigate("${Route.MoviesGenreResult.destination}/$it")
+            }, fetchShowsByGenre = {
+                navHostController.navigate("${Route.ShowsGenreResult.destination}/$it")
             })
         }
 
         composable(
-            route = Route.GenreMovies.destination+ "/{id}",
+            route = Route.MoviesGenreResult.destination+ "/{id}",
             arguments =  listOf(
                 navArgument(name = "id") {
                     type = NavType.LongType
@@ -108,7 +121,7 @@ fun AppNavigationGraph(
             )
         ) {
             val id = it.arguments?.getLong("id")!!
-            GenreResultScreen(modifier = modifier, genreId = id, assistedFactory = genresAssistedFactory, showMovieDetail = {movieId ->
+            GenresMovieResultScreen(modifier = modifier, genreId = id, assistedFactory = moviesGenresAssistedFactory, showMovieDetail = { movieId ->
                 navHostController.navigate("${Route.MovieDetail.destination}/$movieId")
             }, showMoviePoster = {posterPath ->
                 sharedViewModel.putPosterPath(posterPath)
@@ -130,7 +143,19 @@ fun AppNavigationGraph(
             MovieDetailScreen(movieId = movieId, modifier = modifier, assistedFactory = movieDetailAssistedFactory, showMoviePoster = { posterPath ->
                 sharedViewModel.putPosterPath(posterPath)
                 navHostController.navigate(Route.PosterImage.destination)
+            }, watchVideoPreview = { movieName ->
+                navHostController.navigate( "${Route.MoviesPlayer.destination}/$movieName" )
             } )
+        }
+
+        composable(
+            route = "${Route.MoviesPlayer.destination}/{name}",
+            arguments = listOf(
+                navArgument(name = "name") { type = NavType.StringType }
+            )
+        ) {
+            val movieName = it.arguments?.getString("name")!!
+            MoviesPlayerScreen(name = movieName, assistedFactory = moviesPlayerAssistedFactory )
         }
 
         composable(
@@ -143,8 +168,42 @@ fun AppNavigationGraph(
             ShowDetailScreen(showId = showId, modifier = modifier, assistedFactory = showDetailAssistedFactory, showPoster = { posterPath ->
                 sharedViewModel.putPosterPath(posterPath)
                 navHostController.navigate(Route.PosterImage.destination)
+            }, watchVideoPreview = { showName ->
+                navHostController.navigate("${Route.ShowsPlayer.destination}/$showName")
             } )
         }
+
+        composable(
+            route = "${Route.ShowsPlayer.destination}/{name}",
+            arguments = listOf(
+                navArgument(name = "name") { type = NavType.StringType }
+            )
+        ) {
+            val showsName = it.arguments?.getString("name")!!
+            ShowsPlayerScreen(name = showsName, assistedFactory = showsPlayerAssistedFactory )
+        }
+
+        composable(
+            route = "${Route.ShowsGenreResult.destination}/{id}",
+            arguments = listOf(
+                navArgument(name = "id") { type = NavType.LongType }
+            )
+        ) {
+            val genreId = it.arguments?.getLong("id")!!
+            GenreShowsResultScreen(
+                modifier = Modifier.fillMaxSize(),
+                assistedFactory = showsGenresAssistedFactory,
+                genreId = genreId,
+                showPoster = {
+                    sharedViewModel.putPosterPath(it)
+                    navHostController.navigate(Route.PosterImage.destination)
+                },
+                showDetail = { showId ->
+                    navHostController.navigate( "${Route.ShowDetail.destination}/$showId" )
+                }
+            )
+        }
+
     }
 
 }

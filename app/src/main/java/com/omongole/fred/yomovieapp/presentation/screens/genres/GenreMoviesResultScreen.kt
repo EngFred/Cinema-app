@@ -29,24 +29,23 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedSearchResultShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
 import com.omongole.fred.yomovieapp.util.Constants
 
 @Composable
-fun GenreResultScreen(
+fun GenresMovieResultScreen(
     modifier: Modifier,
     genreId: Long,
-    assistedFactory: GenreResultViewModelAssistedFactory,
+    assistedFactory: GenresMovieResultViewModelAssistedFactory,
     showMovieDetail: (Int) -> Unit,
     showMoviePoster: (String) -> Unit
 ) {
 
     val viewModel =  viewModel(
-        modelClass = GenreResultScreenViewModel::class.java,
-        factory = GenreResultScreenViewModelFactory(
+        modelClass = GenresMovieResultScreenViewModel::class.java,
+        factory = GenresMovieResultScreenViewModelFactory(
             genreId, assistedFactory
         )
     )

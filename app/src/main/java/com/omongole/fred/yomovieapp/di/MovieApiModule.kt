@@ -6,7 +6,7 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
 import com.omongole.fred.yomovieapp.data.local.MovieDatabase
 import com.omongole.fred.yomovieapp.data.local.dao.MovieDao
-import com.omongole.fred.yomovieapp.data.remote.MovieApi
+import com.omongole.fred.yomovieapp.data.remote.service.MovieApi
 import com.omongole.fred.yomovieapp.data.repository.MovieRepository
 import com.omongole.fred.yomovieapp.data.repository.ShowsRepository
 import com.omongole.fred.yomovieapp.domain.MovieRepositoryImpl
@@ -26,11 +26,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object MovieApiModule {
 
     @Singleton
     @Provides
-    fun providesRetrofit() : Retrofit {
+    @JvmStatic
+    fun providesMovieApiInstance() : MovieApi {
         val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BASIC
         }
@@ -38,16 +39,11 @@ object AppModule {
         httpClient.readTimeout(60, TimeUnit.SECONDS)
 
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(Constants.MOVIE_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(httpClient.build())
             .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideMovieApiInstance( retrofit: Retrofit ): MovieApi {
-        return retrofit.create(MovieApi::class.java)
+            .create(MovieApi::class.java)
     }
 
     @Singleton
@@ -62,11 +58,11 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesMovieRepository( api: MovieApi ) : MovieRepository = MovieRepositoryImpl( api )
+    fun providesMovieRepository( api: MovieApi) : MovieRepository = MovieRepositoryImpl( api )
 
     @Singleton
     @Provides
-    fun providesShowsRepository( api: MovieApi ) : ShowsRepository = ShowsRepositoryImpl( api )
+    fun providesShowsRepository( api: MovieApi) : ShowsRepository = ShowsRepositoryImpl( api )
 
     @Singleton
     @Provides

@@ -12,10 +12,9 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-const val TAG = "SHOWS PAGING SOURCE"
-
-class TopRatedTvShowsPagingSource @Inject constructor (
-    private val movieApi: MovieApi
+class ShowsByGenrePagingSource @Inject constructor (
+    private val movieApi: MovieApi,
+    private val genreId: Long,
 )  : PagingSource<Int, TvShow>(){
 
     override fun getRefreshKey(state: PagingState<Int, TvShow>): Int? {
@@ -26,7 +25,7 @@ class TopRatedTvShowsPagingSource @Inject constructor (
         return try {
             val currentPage = params.key ?: 1
 
-            val apiResponse = movieApi.fetchTopRatedTvShows( page = currentPage, perPage = PER_PAGE )
+            val apiResponse = movieApi.fetchShowsByGenre( page = currentPage, perPage = PER_PAGE, genreId = genreId )
             val endOfPaginationReached = apiResponse.tvShows.isEmpty()
 
             LoadResult.Page(

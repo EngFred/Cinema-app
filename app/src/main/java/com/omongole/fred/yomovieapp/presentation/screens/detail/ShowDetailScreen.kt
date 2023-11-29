@@ -16,7 +16,11 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,7 +44,8 @@ fun ShowDetailScreen(
     showId: Int,
     modifier: Modifier,
     assistedFactory: ShowDetailScreenViewModelAssistedFactory,
-    showPoster: (String) -> Unit
+    showPoster: (String) -> Unit,
+    watchVideoPreview: (String) -> Unit
 ) {
 
     val viewModel =  viewModel(
@@ -105,20 +110,46 @@ fun ShowDetailScreen(
                         modifier = Modifier
                             .weight(1f)
                             .height(380.dp)
-                            .verticalScroll(rememberScrollState())
                     ) {
-                        Text(text = "Production Companies:", fontWeight = FontWeight.Bold)
-                        if (  show.productionCompanies.isEmpty() ) {
-                            Text(text = "Non listed", color = Color.Red)
-                        }else {
-                            Text(text = show.productionCompanies.joinToString { it.name })
+                        Column(
+                            modifier = Modifier
+                                .height(310.dp)
+                                .weight(1f)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text(text = "Production Companies:", fontWeight = FontWeight.Bold)
+                            if (  show.productionCompanies.isEmpty() ) {
+                                Text(text = "Non listed", color = Color.Red)
+                            }else {
+                                Text(text = show.productionCompanies.joinToString { it.name })
+                            }
+                            Spacer(modifier = Modifier.size(20.dp))
+                            Text(text = "Production Countries:", fontWeight = FontWeight.Bold)
+                            if ( show.productionCountries.isEmpty() ) {
+                                Text(text = "Non listed", color = Color.Red)
+                            } else {
+                                Text(text = show.productionCountries.joinToString { it.name })
+                            }
                         }
-                        Spacer(modifier = Modifier.size(20.dp))
-                        Text(text = "Production Countries:", fontWeight = FontWeight.Bold)
-                        if ( show.productionCountries.isEmpty() ) {
-                            Text(text = "Non listed", color = Color.Red)
-                        } else {
-                            Text(text = show.productionCountries.joinToString { it.name })
+                        Button(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 10.dp, end = 10.dp, top = 10.dp)
+                                .height(50.dp),
+                            shape = MaterialTheme.shapes.small,
+                            onClick = { watchVideoPreview( showDetailState.result.name ) }
+                        ) {
+                            Row( modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Text(text = "Preview", Modifier.padding(end= 10.dp))
+                                Icon(
+                                    imageVector = Icons.Rounded.PlayArrow,
+                                    contentDescription = "play button",
+                                    modifier = Modifier.size(55.dp)
+                                )
+                            }
                         }
                     }
                 }

@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.omongole.fred.yomovieapp.data.modals.Genre
 import com.omongole.fred.yomovieapp.data.modals.Movie
-import com.omongole.fred.yomovieapp.data.remote.MovieApi
+import com.omongole.fred.yomovieapp.data.remote.service.MovieApi
 import com.omongole.fred.yomovieapp.data.remote.MovieDetailResponse
 import com.omongole.fred.yomovieapp.data.remote.source.movies.MoviesByGenrePagingSource
 import com.omongole.fred.yomovieapp.data.remote.source.movies.NowPlayingMoviesPagingSource

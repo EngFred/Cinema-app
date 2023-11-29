@@ -1,6 +1,7 @@
 package com.omongole.fred.yomovieapp.data.repository
 
 import androidx.paging.PagingData
+import com.omongole.fred.yomovieapp.data.modals.Genre
 import com.omongole.fred.yomovieapp.data.modals.TvShow
 import com.omongole.fred.yomovieapp.data.remote.ShowDetailResponse
 import kotlinx.coroutines.flow.Flow
@@ -11,4 +12,6 @@ interface ShowsRepository {
     fun fetchOnAirTvShows() : Flow<PagingData<TvShow>>
     fun searchShows( query: String ) : Flow<PagingData<TvShow>>
     fun fetchShowDetails( showId: Int ) : Flow<ShowDetailResponse>
+    fun getShowsGenres() :  Flow<List<Genre>>
+    fun fetchShowsByGenre( genreId: Long ) : Flow<PagingData<TvShow>>
 }

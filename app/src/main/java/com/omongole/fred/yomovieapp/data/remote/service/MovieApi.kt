@@ -1,9 +1,15 @@
-package com.omongole.fred.yomovieapp.data.remote
+package com.omongole.fred.yomovieapp.data.remote.service
 
+import com.omongole.fred.yomovieapp.data.remote.GenresResponse
+import com.omongole.fred.yomovieapp.data.remote.MovieDetailResponse
+import com.omongole.fred.yomovieapp.data.remote.MoviesResponse
+import com.omongole.fred.yomovieapp.data.remote.ShowDetailResponse
+import com.omongole.fred.yomovieapp.data.remote.ShowResponse
 import com.omongole.fred.yomovieapp.util.Constants.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import javax.inject.Singleton
 
 interface MovieApi {
 
@@ -81,6 +87,16 @@ interface MovieApi {
 
     @GET("genre/movie/list?api_key=${API_KEY}")
     suspend fun fetchMoviesGenre() : GenresResponse
+
+    @GET("genre/tv/list?api_key=${API_KEY}")
+    suspend fun fetchShowsGenre() : GenresResponse
+
+    @GET("discover/tv?api_key=${API_KEY}")
+    suspend fun fetchShowsByGenre(
+        @Query("page") page: Int,
+        @Query("perPage") perPage: Int,
+        @Query("with_genres") genreId: Long
+    ) : ShowResponse
 
     @GET("discover/movie?api_key=${API_KEY}")
     suspend fun fetchMoviesByGenre(

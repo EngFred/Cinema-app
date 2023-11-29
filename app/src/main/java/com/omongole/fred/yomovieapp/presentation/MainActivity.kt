@@ -23,8 +23,11 @@ import com.omongole.fred.yomovieapp.presentation.screens.SharedViewModel
 import com.omongole.fred.yomovieapp.presentation.components.AppBottomBar
 import com.omongole.fred.yomovieapp.presentation.screens.detail.MovieDetailScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.detail.ShowDetailScreenViewModelAssistedFactory
-import com.omongole.fred.yomovieapp.presentation.screens.genres.GenreResultViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresMovieResultViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresShowsResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.home.HomeScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.screens.player.MoviePreviewPlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.screens.player.ShowsPreviewPlayerScreenViewModel
 import com.omongole.fred.yomovieapp.presentation.screens.search.MoviesSearchResultScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.shows.ShowsSearchResultScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.theme.YoMovieAppTheme
@@ -35,7 +38,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var genreAssistedFactory: GenreResultViewModelAssistedFactory
+    lateinit var moviesGenreAssistedFactory: GenresMovieResultViewModelAssistedFactory
 
     @Inject
     lateinit var searchAssistedFactory: MoviesSearchResultScreenViewModelAssistedFactory
@@ -48,6 +51,15 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var showDetailAssistedFactory: ShowDetailScreenViewModelAssistedFactory
+
+    @Inject
+    lateinit var showsResultAssistedFactory: GenresShowsResultViewModelAssistedFactory
+
+    @Inject
+    lateinit var moviesPlayerAssistedFactory: MoviePreviewPlayerScreenViewModel.MoviePreviewPlayerScreenViewModelAssistedFactory
+
+    @Inject
+    lateinit var showsPlayerAssistedFactory: ShowsPreviewPlayerScreenViewModel.ShowsPreviewPlayerScreenViewModelAssistedFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,12 +97,15 @@ class MainActivity : ComponentActivity() {
                 navHostController = navController,
                 modifier = Modifier.padding( paddingValues = it),
                 moviesSearchAssistedFactory = searchAssistedFactory,
-                genresAssistedFactory = genreAssistedFactory,
+                moviesGenresAssistedFactory = moviesGenreAssistedFactory,
                 showsSearchAssistedFactory = showsSearchAssistedFactory,
                 movieDetailAssistedFactory = movieDetailAssistedFactory,
                 showDetailAssistedFactory = showDetailAssistedFactory,
+                moviesPlayerAssistedFactory = moviesPlayerAssistedFactory,
                 sharedViewModel = sharedViewModel,
-                darkTheme = darkTheme
+                darkTheme = darkTheme,
+                showsPlayerAssistedFactory = showsPlayerAssistedFactory,
+                showsGenresAssistedFactory = showsResultAssistedFactory
             )
         }
     }

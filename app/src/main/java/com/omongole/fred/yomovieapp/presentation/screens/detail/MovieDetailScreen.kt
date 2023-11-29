@@ -14,7 +14,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -40,17 +44,18 @@ fun MovieDetailScreen(
     movieId: Int,
     modifier: Modifier,
     assistedFactory: MovieDetailScreenViewModelAssistedFactory,
-    showMoviePoster: (String) -> Unit
+    showMoviePoster: (String) -> Unit,
+    watchVideoPreview: (String) -> Unit
 ) {
 
-    val viewModel =  viewModel(
+    val detailViewModel =  viewModel(
         modelClass = MovieDetailScreenViewModel::class.java,
         factory = MovieDetailScreenViewModelFactory(
             movieId, assistedFactory
         )
     )
 
-    val movieDetailState = viewModel.movie.collectAsState().value
+    val movieDetailState = detailViewModel.movie.collectAsState().value
 
     when( movieDetailState ) {
 
@@ -64,7 +69,7 @@ fun MovieDetailScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 NoInternetComponent(modifier = modifier, error = movieDetailState.message, refresh = {
-                    viewModel.getMovieDetail()
+                    detailViewModel.getMovieDetail()
                 } )
             }
         }
@@ -101,24 +106,50 @@ fun MovieDetailScreen(
                         contentScale = ContentScale.FillBounds,
                     )
                     Spacer(modifier = Modifier.size(10.dp))
-                    Column(
+                    Column (
                         modifier = Modifier
                             .weight(1f)
                             .height(380.dp)
-                            .verticalScroll(rememberScrollState())
-                    ) {
-                        Text(text = "Production Companies:", fontWeight = FontWeight.Bold)
-                        if (  movie.productionCompanies.isEmpty() ) {
-                            Text(text = "Non listed", color = Color.Red)
-                        }else {
-                            Text(text = movie.productionCompanies.joinToString { it.name })
+                    ){
+                        Column(
+                            modifier = Modifier
+                                .height(310.dp)
+                                .weight(1f)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            Text(text = "Production Companies:", fontWeight = FontWeight.Bold)
+                            if (  movie.productionCompanies.isEmpty() ) {
+                                Text(text = "Non listed", color = Color.Red)
+                            }else {
+                                Text(text = movie.productionCompanies.joinToString { it.name })
+                            }
+                            Spacer(modifier = Modifier.size(20.dp))
+                            Text(text = "Production Countries:", fontWeight = FontWeight.Bold)
+                            if ( movie.productionCountries.isEmpty() ) {
+                                Text(text = "Non listed", color = Color.Red)
+                            } else {
+                                Text(text = movie.productionCountries.joinToString { it.name })
+                            }
                         }
-                        Spacer(modifier = Modifier.size(20.dp))
-                        Text(text = "Production Countries:", fontWeight = FontWeight.Bold)
-                        if ( movie.productionCountries.isEmpty() ) {
-                            Text(text = "Non listed", color = Color.Red)
-                        } else {
-                            Text(text = movie.productionCountries.joinToString { it.name })
+                        Button(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 10.dp, end = 10.dp, top = 10.dp)
+                                .height(50.dp),
+                            shape = MaterialTheme.shapes.small,
+                            onClick = { watchVideoPreview( movie.title ) }
+                        ) {
+                            Row( modifier = Modifier.fillMaxWidth(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Text(text = "Preview", Modifier.padding(end= 10.dp))
+                                Icon(
+                                    imageVector = Icons.Rounded.PlayArrow,
+                                    contentDescription = "play button",
+                                    modifier = Modifier.size(55.dp)
+                                )
+                            }
                         }
                     }
                 }
