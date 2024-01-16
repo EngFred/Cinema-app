@@ -54,14 +54,14 @@ android {
 dependencies {
 
     val hiltVersion = "2.48"
-    val composeNavigationVersion = "2.7.5"
+    val composeNavigationVersion = "2.7.6"
     val hiltComposeNavigationVersion = "1.1.0"
     val coroutinesVersion = "1.7.3"
-    val roomVersion = "2.6.0"
+    val roomVersion = "2.6.1"
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.1")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
@@ -74,7 +74,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:${hiltVersion}")
 
     //view model
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
     //navigation
     implementation("androidx.navigation:navigation-compose:${composeNavigationVersion}")

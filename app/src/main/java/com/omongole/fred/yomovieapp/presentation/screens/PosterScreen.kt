@@ -6,13 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
+import com.omongole.fred.yomovieapp.presentation.viewModel.SharedViewModel
 import com.omongole.fred.yomovieapp.util.Constants
 
 @Composable
 fun PosterScreen(
     sharedViewModel: SharedViewModel,
 ) {
-
     val posterPath = sharedViewModel.moviePath
     Box(
         modifier = Modifier

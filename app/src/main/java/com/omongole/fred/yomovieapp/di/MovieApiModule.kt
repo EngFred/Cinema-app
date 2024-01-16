@@ -4,13 +4,11 @@ import android.content.Context
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.room.Room
-import com.omongole.fred.yomovieapp.data.local.MovieDatabase
-import com.omongole.fred.yomovieapp.data.local.dao.MovieDao
-import com.omongole.fred.yomovieapp.data.remote.service.MovieApi
-import com.omongole.fred.yomovieapp.data.repository.MovieRepository
-import com.omongole.fred.yomovieapp.data.repository.ShowsRepository
-import com.omongole.fred.yomovieapp.domain.MovieRepositoryImpl
-import com.omongole.fred.yomovieapp.domain.ShowsRepositoryImpl
+import com.omongole.fred.yomovieapp.data.remote.services.MovieApi
+import com.omongole.fred.yomovieapp.domain.repository.MovieRepository
+import com.omongole.fred.yomovieapp.domain.repository.ShowsRepository
+import com.omongole.fred.yomovieapp.data.repository.MovieRepositoryImpl
+import com.omongole.fred.yomovieapp.data.repository.ShowsRepositoryImpl
 import com.omongole.fred.yomovieapp.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -45,16 +43,6 @@ object MovieApiModule {
             .build()
             .create(MovieApi::class.java)
     }
-
-    @Singleton
-    @Provides
-    fun provideMovieDatabase( @ApplicationContext context: Context ): MovieDatabase =
-        Room.databaseBuilder(context, MovieDatabase::class.java, "movies_database").fallbackToDestructiveMigration()
-            .build()
-
-    @Singleton
-    @Provides
-    fun provideMoviesDao(movieDatabase: MovieDatabase ): MovieDao =  movieDatabase.getMovieDao()
 
     @Singleton
     @Provides

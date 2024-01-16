@@ -31,14 +31,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedImageShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedTextShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.Header
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
 import com.omongole.fred.yomovieapp.presentation.theme.AlertDialogComponent
+import com.omongole.fred.yomovieapp.presentation.viewModel.HomeScreenEvent
+import com.omongole.fred.yomovieapp.presentation.viewModel.HomeScreenViewModel
 import com.omongole.fred.yomovieapp.util.Constants.BASE_IMAGE_URL
+import com.omongole.fred.yomovieapp.util.Constants.BASE_IMAGE_URL_W500
 
 @Composable
 fun HomeScreen(
@@ -117,7 +119,7 @@ fun HomeScreen(
                                 .width(145.dp)
                                 .clip(RoundedCornerShape(8.dp))
                                 .clickable { showMovieDetail(it.id) },
-                            model = "${BASE_IMAGE_URL}${it.posterPath}",
+                            model = "${BASE_IMAGE_URL_W500}${it.posterPath}",
                             contentDescription = "Poster Image",
                             contentScale = ContentScale.FillBounds,
                         )
@@ -162,7 +164,7 @@ fun HomeScreen(
                                 .width(145.dp)
                                 .clip(RoundedCornerShape(8.dp))
                                 .clickable { showMovieDetail(it.id) },
-                            model = "${BASE_IMAGE_URL}${it.posterPath}",
+                            model = "${BASE_IMAGE_URL_W500}${it.posterPath}",
                             contentDescription = "Poster Image",
                             contentScale = ContentScale.FillBounds,
                         )
@@ -207,7 +209,7 @@ fun HomeScreen(
                                 .width(145.dp)
                                 .clip(RoundedCornerShape(8.dp))
                                 .clickable { showMovieDetail(it.id) },
-                            model = "${BASE_IMAGE_URL}${it.posterPath}",
+                            model = "${BASE_IMAGE_URL_W500}${it.posterPath}",
                             contentDescription = "Poster Image",
                             contentScale = ContentScale.FillBounds,
                         )
@@ -253,7 +255,7 @@ fun HomeScreen(
                                 .width(145.dp)
                                 .clip(RoundedCornerShape(8.dp))
                                 .clickable { showMovieDetail(it.id) },
-                            model = "${BASE_IMAGE_URL}${it.posterPath}",
+                            model = "${BASE_IMAGE_URL_W500}${it.posterPath}",
                             contentDescription = "Poster Image",
                             contentScale = ContentScale.FillBounds,
                         )

@@ -1,6 +1,6 @@
 package com.omongole.fred.yomovieapp.domain.usecases.shows
 
-import com.omongole.fred.yomovieapp.data.repository.ShowsRepository
+import com.omongole.fred.yomovieapp.domain.repository.ShowsRepository
 import javax.inject.Inject
 
 class GetTopRatedTvShowsUseCase @Inject constructor(

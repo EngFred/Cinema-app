@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.omongole.fred.yomovieapp.presentation.navigation.BottomBarNavigationItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

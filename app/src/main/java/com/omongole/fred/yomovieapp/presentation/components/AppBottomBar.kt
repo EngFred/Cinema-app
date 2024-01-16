@@ -12,6 +12,7 @@ import androidx.compose.runtime.setValue
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.omongole.fred.yomovieapp.presentation.navigation.BottomBarNavigationItem
 
 @Composable
 fun AppBottomBar(

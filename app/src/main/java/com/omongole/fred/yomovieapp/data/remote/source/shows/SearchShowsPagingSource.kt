@@ -3,8 +3,8 @@ package com.omongole.fred.yomovieapp.data.remote.source.shows
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.omongole.fred.yomovieapp.data.modals.TvShow
-import com.omongole.fred.yomovieapp.data.remote.service.MovieApi
+import com.omongole.fred.yomovieapp.domain.modals.TvShow
+import com.omongole.fred.yomovieapp.data.remote.services.MovieApi
 import com.omongole.fred.yomovieapp.util.Constants.PER_PAGE
 import retrofit2.HttpException
 import java.net.ConnectException

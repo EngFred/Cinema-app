@@ -1,8 +1,8 @@
 package com.omongole.fred.yomovieapp.di
 
-import com.omongole.fred.yomovieapp.data.remote.service.ItunesApi
-import com.omongole.fred.yomovieapp.data.repository.ItunesRepository
-import com.omongole.fred.yomovieapp.domain.ItunesRepositoryImpl
+import com.omongole.fred.yomovieapp.data.remote.services.ItunesApi
+import com.omongole.fred.yomovieapp.domain.repository.ItunesRepository
+import com.omongole.fred.yomovieapp.data.repository.ItunesRepositoryImpl
 import com.omongole.fred.yomovieapp.util.Constants.ITUNES_BASE_URL
 import dagger.Module
 import dagger.Provides

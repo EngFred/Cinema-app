@@ -32,7 +32,11 @@ import androidx.paging.compose.itemContentType
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedSearchResultShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsSearchResultScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsSearchResultScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsSearchResultScreenViewModelFactory
 import com.omongole.fred.yomovieapp.util.Constants
+import com.omongole.fred.yomovieapp.util.Constants.BASE_IMAGE_URL_W500
 
 @Composable
 fun ShowsSearchResultScreen(
@@ -91,7 +95,7 @@ fun ShowsSearchResultScreen(
                                     .clickable {
                                         showPoster(it.posterPath)
                                     },
-                                model = "${Constants.BASE_IMAGE_URL}${it.posterPath}",
+                                model = "${BASE_IMAGE_URL_W500}${it.posterPath}",
                                 contentDescription = "Poster Image",
                                 contentScale = ContentScale.FillBounds,
                             )

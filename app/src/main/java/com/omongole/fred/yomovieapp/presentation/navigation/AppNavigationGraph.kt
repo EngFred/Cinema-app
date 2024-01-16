@@ -9,27 +9,27 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.omongole.fred.yomovieapp.presentation.screens.PosterScreen
-import com.omongole.fred.yomovieapp.presentation.screens.SharedViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.SharedViewModel
 import com.omongole.fred.yomovieapp.presentation.screens.detail.MovieDetailScreen
-import com.omongole.fred.yomovieapp.presentation.screens.detail.MovieDetailScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.MovieDetailScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.detail.ShowDetailScreen
-import com.omongole.fred.yomovieapp.presentation.screens.detail.ShowDetailScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowDetailScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.genres.GenreShowsResultScreen
 import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresMovieResultScreen
-import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresMovieResultViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.GenresMovieResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresScreen
-import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresShowsResultViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.GenresShowsResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.home.HomeScreen
-import com.omongole.fred.yomovieapp.presentation.screens.player.MoviePreviewPlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.MoviePreviewPlayerScreenViewModel
 import com.omongole.fred.yomovieapp.presentation.screens.player.MoviesPlayerScreen
 import com.omongole.fred.yomovieapp.presentation.screens.player.ShowsPlayerScreen
-import com.omongole.fred.yomovieapp.presentation.screens.player.ShowsPreviewPlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsPreviewPlayerScreenViewModel
 import com.omongole.fred.yomovieapp.presentation.screens.search.MoviesSearchResultScreen
-import com.omongole.fred.yomovieapp.presentation.screens.search.MoviesSearchResultScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.MoviesSearchResultScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.search.SearchScreen
 import com.omongole.fred.yomovieapp.presentation.screens.shows.ShowsScreen
 import com.omongole.fred.yomovieapp.presentation.screens.shows.ShowsSearchResultScreen
-import com.omongole.fred.yomovieapp.presentation.screens.shows.ShowsSearchResultScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsSearchResultScreenViewModelAssistedFactory
 
 @Composable
 fun AppNavigationGraph(

@@ -29,13 +29,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedDetailShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
-import com.omongole.fred.yomovieapp.presentation.theme.YoMovieAppTheme
+import com.omongole.fred.yomovieapp.presentation.viewModel.MovieDetailScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.MovieDetailScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.MovieDetailScreenViewModelFactory
 import com.omongole.fred.yomovieapp.util.Constants
 import com.omongole.fred.yomovieapp.util.Resource
 
@@ -139,17 +140,12 @@ fun MovieDetailScreen(
                             shape = MaterialTheme.shapes.small,
                             onClick = { watchVideoPreview( movie.title ) }
                         ) {
-                            Row( modifier = Modifier.fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.Center
-                            ) {
-                                Text(text = "Preview", Modifier.padding(end= 10.dp))
-                                Icon(
-                                    imageVector = Icons.Rounded.PlayArrow,
-                                    contentDescription = "play button",
-                                    modifier = Modifier.size(55.dp)
-                                )
-                            }
+                            Text(text = "Preview")
+                            Icon(
+                                imageVector = Icons.Rounded.PlayArrow,
+                                contentDescription = "play button",
+                                modifier = Modifier.size(55.dp)
+                            )
                         }
                     }
                 }
@@ -220,13 +216,5 @@ fun MovieDetailScreen(
                     .padding(horizontal = 10.dp))
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun OnePrev() {
-    YoMovieAppTheme {
-
     }
 }

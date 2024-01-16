@@ -1,6 +1,6 @@
 package com.omongole.fred.yomovieapp.domain.usecases.movies
 
-import com.omongole.fred.yomovieapp.data.repository.MovieRepository
+import com.omongole.fred.yomovieapp.domain.repository.MovieRepository
 import javax.inject.Inject
 
 class GetMoviesByGenreUseCase @Inject constructor(

@@ -36,6 +36,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedDetailShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowDetailScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowDetailScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowDetailScreenViewModelFactory
 import com.omongole.fred.yomovieapp.util.Constants
 import com.omongole.fred.yomovieapp.util.Resource
 

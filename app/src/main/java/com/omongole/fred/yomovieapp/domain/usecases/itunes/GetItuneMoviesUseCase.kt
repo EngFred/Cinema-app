@@ -1,6 +1,6 @@
 package com.omongole.fred.yomovieapp.domain.usecases.itunes
 
-import com.omongole.fred.yomovieapp.data.repository.ItunesRepository
+import com.omongole.fred.yomovieapp.domain.repository.ItunesRepository
 import javax.inject.Inject
 
 class GetItuneMoviesUseCase @Inject constructor(

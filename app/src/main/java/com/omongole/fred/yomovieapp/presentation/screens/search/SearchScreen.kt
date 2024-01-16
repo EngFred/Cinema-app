@@ -28,12 +28,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
-import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedLargeImageShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedTextShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
 import com.omongole.fred.yomovieapp.presentation.components.SearchWidget
+import com.omongole.fred.yomovieapp.presentation.viewModel.SearchScreenEvent
+import com.omongole.fred.yomovieapp.presentation.viewModel.SearchScreenViewModel
 import com.omongole.fred.yomovieapp.util.Constants
 
 @Composable

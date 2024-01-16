@@ -32,6 +32,9 @@ import androidx.paging.compose.itemContentType
 import coil.compose.AsyncImage
 import com.omongole.fred.yomovieapp.presentation.components.AnimatedSearchResultShimmerEffect
 import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
+import com.omongole.fred.yomovieapp.presentation.viewModel.GenreShowsResultScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.GenreShowsResultScreenViewModelFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.GenresShowsResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.util.Constants
 
 @Composable

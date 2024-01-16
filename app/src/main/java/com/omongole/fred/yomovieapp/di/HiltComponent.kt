@@ -1,7 +1,7 @@
 package com.omongole.fred.yomovieapp.di
 
-import com.omongole.fred.yomovieapp.data.remote.service.ItunesApi
-import com.omongole.fred.yomovieapp.data.remote.service.MovieApi
+import com.omongole.fred.yomovieapp.data.remote.services.ItunesApi
+import com.omongole.fred.yomovieapp.data.remote.services.MovieApi
 import dagger.Component
 import javax.inject.Singleton
 
