@@ -16,4 +16,9 @@ TMDB API: Robust source for movie and TV show data.
 MVVM Architecture: Separates concerns for clean and maintainable code.
 
 App Screenshots:
+
 ![InShot_20240214_190515463](https://github.com/EngFred/Yo-Movie-App/assets/136785545/fad30b6a-d039-4d1e-9f6c-d848b245dfc4)
+
+![InShot_20240214_191200668](https://github.com/EngFred/Yo-Movie-App/assets/136785545/1491524c-6bda-4f09-abb5-e646c6290b45)
+
+![InShot_20240214_191251193](https://github.com/EngFred/Yo-Movie-App/assets/136785545/dfa1c024-5119-4b2a-bbeb-622e69c342ea)
