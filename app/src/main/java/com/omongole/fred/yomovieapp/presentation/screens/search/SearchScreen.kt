@@ -15,13 +15,13 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -29,10 +29,11 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemContentType
 import coil.compose.AsyncImage
-import com.omongole.fred.yomovieapp.presentation.components.AnimatedLargeImageShimmerEffect
-import com.omongole.fred.yomovieapp.presentation.components.AnimatedTextShimmerEffect
-import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
-import com.omongole.fred.yomovieapp.presentation.components.SearchWidget
+import com.omongole.fred.yomovieapp.presentation.common.AnimatedLargeImageShimmerEffect
+import com.omongole.fred.yomovieapp.presentation.common.AnimatedTextShimmerEffect
+import com.omongole.fred.yomovieapp.presentation.common.NoInternetComponent
+import com.omongole.fred.yomovieapp.presentation.common.SearchWidget
+import com.omongole.fred.yomovieapp.presentation.screens.search.components.SearchScreenMovieItem
 import com.omongole.fred.yomovieapp.presentation.viewModel.SearchScreenEvent
 import com.omongole.fred.yomovieapp.presentation.viewModel.SearchScreenViewModel
 import com.omongole.fred.yomovieapp.util.Constants
@@ -77,16 +78,6 @@ fun SearchScreen(
                     }
                 )
                 if ( trendingMovies.loadState.refresh == LoadState.Loading ) {
-                    AnimatedTextShimmerEffect()
-                } else {
-                    Text(
-                        text = "Have You Watched?",
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(10.dp),
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                }
-                if ( trendingMovies.loadState.refresh == LoadState.Loading ) {
                     Column( modifier = Modifier
                         .wrapContentHeight()
                         .padding(5.dp)) {
@@ -103,23 +94,20 @@ fun SearchScreen(
                         }
                     }
                 } else {
-                    LazyVerticalGrid(columns = GridCells.Fixed(2),contentPadding = PaddingValues(5.dp) ) {
+                    LazyVerticalGrid(
+                        columns = GridCells.Fixed(2),
+                        contentPadding = PaddingValues(start = 15.dp)
+                    ) {
                         items(
                             count = trendingMovies.itemCount,
                             //key = trendingMovies.itemKey { it.id },
-                            contentType = trendingMovies.itemContentType{"contentType" }
+                            contentType = trendingMovies.itemContentType{"trendingMovies" }
                         ) {
                             val movie = trendingMovies[it]
-                            movie?.let { m ->
-                                AsyncImage(
-                                    modifier = Modifier
-                                        .padding(bottom = 7.dp, end = 4.dp)
-                                        .height(350.dp)
-                                        .clip(RoundedCornerShape(5.dp))
-                                        .clickable { showMovieDetail( m.id ) },
-                                    model = "${Constants.BASE_IMAGE_URL}${m.posterPath}",
-                                    contentDescription = "Poster Image",
-                                    contentScale = ContentScale.FillBounds,
+                            movie?.let {
+                                SearchScreenMovieItem(
+                                    showMovieDetail = showMovieDetail,
+                                    movie = it
                                 )
                             }
                         }

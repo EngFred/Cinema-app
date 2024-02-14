@@ -3,9 +3,9 @@ package com.omongole.fred.yomovieapp.data.remote.source.shows
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.omongole.fred.yomovieapp.domain.modals.TvShow
+import com.omongole.fred.yomovieapp.data.model.shows.ShowDTO
 import com.omongole.fred.yomovieapp.data.remote.services.MovieApi
-import com.omongole.fred.yomovieapp.util.Constants.PER_PAGE
+import com.omongole.fred.yomovieapp.util.Constants.ITEMS_PER_PAGE
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -15,17 +15,17 @@ import javax.inject.Inject
 class SearchShowsPagingSource @Inject constructor (
     private val movieApi: MovieApi,
     private val query: String
-)  : PagingSource<Int, TvShow>(){
+)  : PagingSource<Int, ShowDTO>(){
 
-    override fun getRefreshKey(state: PagingState<Int, TvShow>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ShowDTO>): Int? {
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvShow> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ShowDTO> {
         return try {
             val currentPage = params.key ?: 1
 
-            val apiResponse = movieApi.searchShows( page = currentPage, perPage = PER_PAGE, query = query  )
+            val apiResponse = movieApi.searchShows( page = currentPage, perPage = ITEMS_PER_PAGE, query = query  )
             val endOfPaginationReached = apiResponse.tvShows.isEmpty()
 
             LoadResult.Page(

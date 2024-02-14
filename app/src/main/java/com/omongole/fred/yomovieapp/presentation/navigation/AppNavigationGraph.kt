@@ -20,10 +20,8 @@ import com.omongole.fred.yomovieapp.presentation.viewModel.GenresMovieResultView
 import com.omongole.fred.yomovieapp.presentation.screens.genres.GenresScreen
 import com.omongole.fred.yomovieapp.presentation.viewModel.GenresShowsResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.home.HomeScreen
-import com.omongole.fred.yomovieapp.presentation.viewModel.MoviePreviewPlayerScreenViewModel
-import com.omongole.fred.yomovieapp.presentation.screens.player.MoviesPlayerScreen
-import com.omongole.fred.yomovieapp.presentation.screens.player.ShowsPlayerScreen
-import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsPreviewPlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.PlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.screens.player.PlayerScreen
 import com.omongole.fred.yomovieapp.presentation.screens.search.MoviesSearchResultScreen
 import com.omongole.fred.yomovieapp.presentation.viewModel.MoviesSearchResultScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.screens.search.SearchScreen
@@ -40,9 +38,7 @@ fun AppNavigationGraph(
     showsSearchAssistedFactory: ShowsSearchResultScreenViewModelAssistedFactory,
     movieDetailAssistedFactory: MovieDetailScreenViewModelAssistedFactory,
     showDetailAssistedFactory: ShowDetailScreenViewModelAssistedFactory,
-    moviesPlayerAssistedFactory: MoviePreviewPlayerScreenViewModel.MoviePreviewPlayerScreenViewModelAssistedFactory,
-    showsPlayerAssistedFactory: ShowsPreviewPlayerScreenViewModel.ShowsPreviewPlayerScreenViewModelAssistedFactory,
-
+    moviesPlayerAssistedFactory: PlayerScreenViewModel.PlayerViewModelAssistedFactory,
     modifier: Modifier,
     sharedViewModel: SharedViewModel,
     darkTheme: Boolean
@@ -155,7 +151,7 @@ fun AppNavigationGraph(
             )
         ) {
             val movieName = it.arguments?.getString("name")!!
-            MoviesPlayerScreen(name = movieName, assistedFactory = moviesPlayerAssistedFactory )
+            PlayerScreen(name = movieName, assistedFactory = moviesPlayerAssistedFactory )
         }
 
         composable(
@@ -168,19 +164,7 @@ fun AppNavigationGraph(
             ShowDetailScreen(showId = showId, modifier = modifier, assistedFactory = showDetailAssistedFactory, showPoster = { posterPath ->
                 sharedViewModel.putPosterPath(posterPath)
                 navHostController.navigate(Route.PosterImage.destination)
-            }, watchVideoPreview = { showName ->
-                navHostController.navigate("${Route.ShowsPlayer.destination}/$showName")
             } )
-        }
-
-        composable(
-            route = "${Route.ShowsPlayer.destination}/{name}",
-            arguments = listOf(
-                navArgument(name = "name") { type = NavType.StringType }
-            )
-        ) {
-            val showsName = it.arguments?.getString("name")!!
-            ShowsPlayerScreen(name = showsName, assistedFactory = showsPlayerAssistedFactory )
         }
 
         composable(

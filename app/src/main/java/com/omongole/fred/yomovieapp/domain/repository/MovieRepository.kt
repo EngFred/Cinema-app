@@ -1,9 +1,10 @@
 package com.omongole.fred.yomovieapp.domain.repository
 
 import androidx.paging.PagingData
-import com.omongole.fred.yomovieapp.domain.modals.valueObjects.Genre
-import com.omongole.fred.yomovieapp.domain.modals.Movie
-import com.omongole.fred.yomovieapp.domain.modals.MovieDetailResponse
+import com.omongole.fred.yomovieapp.data.model.valueObjects.GenreDTO
+import com.omongole.fred.yomovieapp.domain.model.movies.Movie
+import com.omongole.fred.yomovieapp.domain.model.movies.MovieDetail
+import com.omongole.fred.yomovieapp.domain.model.valueObjects.Genre
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
@@ -15,5 +16,5 @@ interface MovieRepository {
     fun getMoviesByGenre( genreId: Long ) : Flow<PagingData<Movie>>
     fun getTrendingMovies() : Flow<PagingData<Movie>>
     fun searchMovies( query: String ) : Flow<PagingData<Movie>>
-    fun getMovieDetail( movieId: Int ) : Flow<MovieDetailResponse>
+    fun getMovieDetail( movieId: Int ) : Flow<MovieDetail>
 }

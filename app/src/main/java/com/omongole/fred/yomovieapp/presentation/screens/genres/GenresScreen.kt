@@ -21,7 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.omongole.fred.yomovieapp.presentation.components.NoInternetComponent
+import com.omongole.fred.yomovieapp.presentation.common.NoInternetComponent
 import com.omongole.fred.yomovieapp.presentation.viewModel.GenresViewModel
 
 @Composable
@@ -44,7 +44,7 @@ fun GenresScreen(
     val showsGenres = genresViewModel.showsGenres.collectAsState().value
 
     var id by remember {
-        mutableStateOf(0L)
+        mutableLongStateOf(0L)
     }
 
     if ( movieGenres.isEmpty() && showsGenres.isEmpty() && genresViewModel.error.isEmpty() ) {
@@ -73,7 +73,12 @@ fun GenresScreen(
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(text = "MOVIE GENRES", fontWeight = FontWeight.Bold,  modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center )
+            Text(
+                text = "MOVIE GENRES",
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
             Spacer(modifier = Modifier.size(5.dp))
             Divider()
             Spacer(modifier = Modifier.size(10.dp))

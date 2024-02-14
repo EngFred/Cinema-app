@@ -1,6 +1,6 @@
 package com.omongole.fred.yomovieapp.data.remote.services
 
-import com.omongole.fred.yomovieapp.domain.modals.ItunesResponse
+import com.omongole.fred.yomovieapp.data.model.itunes.ItunesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

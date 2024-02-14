@@ -3,9 +3,9 @@ package com.omongole.fred.yomovieapp.data.remote.source.shows
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.omongole.fred.yomovieapp.domain.modals.TvShow
+import com.omongole.fred.yomovieapp.data.model.shows.ShowDTO
 import com.omongole.fred.yomovieapp.data.remote.services.MovieApi
-import com.omongole.fred.yomovieapp.util.Constants.PER_PAGE
+import com.omongole.fred.yomovieapp.util.Constants.ITEMS_PER_PAGE
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -15,21 +15,21 @@ import javax.inject.Inject
 class ShowsByGenrePagingSource @Inject constructor (
     private val movieApi: MovieApi,
     private val genreId: Long,
-)  : PagingSource<Int, TvShow>(){
+)  : PagingSource<Int, ShowDTO>(){
 
-    override fun getRefreshKey(state: PagingState<Int, TvShow>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ShowDTO>): Int? {
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvShow> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ShowDTO> {
         return try {
             val currentPage = params.key ?: 1
 
-            val apiResponse = movieApi.fetchShowsByGenre( page = currentPage, perPage = PER_PAGE, genreId = genreId )
+            val apiResponse = movieApi.fetchShowsByGenre( page = currentPage, perPage = ITEMS_PER_PAGE, genreId = genreId )
             val endOfPaginationReached = apiResponse.tvShows.isEmpty()
 
             LoadResult.Page(
-                data = apiResponse.tvShows ,
+                data = apiResponse.tvShows.shuffled(),
                 prevKey = if ( currentPage == 1 ) null else currentPage - 1,
                 nextKey = if ( endOfPaginationReached ) null else currentPage + 1
             )

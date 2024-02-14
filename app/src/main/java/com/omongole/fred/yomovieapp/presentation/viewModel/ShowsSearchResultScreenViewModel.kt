@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.omongole.fred.yomovieapp.domain.modals.TvShow
+import com.omongole.fred.yomovieapp.data.model.shows.ShowDTO
+import com.omongole.fred.yomovieapp.domain.model.shows.Show
 import com.omongole.fred.yomovieapp.domain.usecases.shows.SearchTvShowsUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -20,7 +21,7 @@ class ShowsSearchResultScreenViewModel @AssistedInject constructor(
     @Assisted private val query: String
 ) : ViewModel() {
 
-    private val _shows = MutableStateFlow<PagingData<TvShow>>(PagingData.empty())
+    private val _shows = MutableStateFlow<PagingData<Show>>(PagingData.empty())
     val shows = _shows.asStateFlow()
 
     init {

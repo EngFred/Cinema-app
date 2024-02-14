@@ -8,7 +8,7 @@ object Constants {
     const val ITUNES_BASE_URL = "https://itunes.apple.com/"
     const val BASE_IMAGE_URL = "https://image.tmdb.org/t/p/original"
     const val BASE_IMAGE_URL_W500 = "https://image.tmdb.org/t/p/w500"
-    const val PER_PAGE = 10
+    const val ITEMS_PER_PAGE = 10
     val THEME_MODE_KEY = booleanPreferencesKey("THEME_MODE_KEY")
 }
 

@@ -5,7 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omongole.fred.yomovieapp.domain.modals.valueObjects.Genre
+import com.omongole.fred.yomovieapp.data.model.valueObjects.GenreDTO
+import com.omongole.fred.yomovieapp.domain.model.valueObjects.Genre
 import com.omongole.fred.yomovieapp.domain.usecases.movies.GetMoviesGenreUseCase
 import com.omongole.fred.yomovieapp.domain.usecases.shows.GetShowsGenresUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

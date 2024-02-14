@@ -1,6 +1,6 @@
 package com.omongole.fred.yomovieapp.domain.repository
 
-import com.omongole.fred.yomovieapp.domain.modals.Itune
+import com.omongole.fred.yomovieapp.domain.model.itune.Itune
 import kotlinx.coroutines.flow.Flow
 
 interface ItunesRepository  {

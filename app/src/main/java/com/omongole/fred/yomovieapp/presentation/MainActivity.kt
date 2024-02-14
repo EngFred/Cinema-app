@@ -18,19 +18,18 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.omongole.fred.yomovieapp.presentation.common.AppBottomBar
 import com.omongole.fred.yomovieapp.presentation.navigation.AppNavigationGraph
-import com.omongole.fred.yomovieapp.presentation.viewModel.SharedViewModel
-import com.omongole.fred.yomovieapp.presentation.components.AppBottomBar
-import com.omongole.fred.yomovieapp.presentation.viewModel.MovieDetailScreenViewModelAssistedFactory
-import com.omongole.fred.yomovieapp.presentation.viewModel.ShowDetailScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.theme.YoMovieAppTheme
 import com.omongole.fred.yomovieapp.presentation.viewModel.GenresMovieResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.viewModel.GenresShowsResultViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.viewModel.HomeScreenViewModel
-import com.omongole.fred.yomovieapp.presentation.viewModel.MoviePreviewPlayerScreenViewModel
-import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsPreviewPlayerScreenViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.MovieDetailScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.PlayerScreenViewModel
 import com.omongole.fred.yomovieapp.presentation.viewModel.MoviesSearchResultScreenViewModelAssistedFactory
+import com.omongole.fred.yomovieapp.presentation.viewModel.SharedViewModel
+import com.omongole.fred.yomovieapp.presentation.viewModel.ShowDetailScreenViewModelAssistedFactory
 import com.omongole.fred.yomovieapp.presentation.viewModel.ShowsSearchResultScreenViewModelAssistedFactory
-import com.omongole.fred.yomovieapp.presentation.theme.YoMovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -56,10 +55,7 @@ class MainActivity : ComponentActivity() {
     lateinit var showsResultAssistedFactory: GenresShowsResultViewModelAssistedFactory
 
     @Inject
-    lateinit var moviesPlayerAssistedFactory: MoviePreviewPlayerScreenViewModel.MoviePreviewPlayerScreenViewModelAssistedFactory
-
-    @Inject
-    lateinit var showsPlayerAssistedFactory: ShowsPreviewPlayerScreenViewModel.ShowsPreviewPlayerScreenViewModelAssistedFactory
+    lateinit var moviesPlayerAssistedFactory: PlayerScreenViewModel.PlayerViewModelAssistedFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,10 +100,8 @@ class MainActivity : ComponentActivity() {
                 moviesPlayerAssistedFactory = moviesPlayerAssistedFactory,
                 sharedViewModel = sharedViewModel,
                 darkTheme = darkTheme,
-                showsPlayerAssistedFactory = showsPlayerAssistedFactory,
                 showsGenresAssistedFactory = showsResultAssistedFactory
             )
         }
     }
-
 }

@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.omongole.fred.yomovieapp.domain.modals.Movie
-import com.omongole.fred.yomovieapp.domain.usecases.theme.RetrieveThemeModeUseCase
-import com.omongole.fred.yomovieapp.domain.usecases.theme.StoreThemeModeUseCase
+import com.omongole.fred.yomovieapp.domain.model.movies.Movie
 import com.omongole.fred.yomovieapp.domain.usecases.movies.GetNowPlayingMoviesUseCase
 import com.omongole.fred.yomovieapp.domain.usecases.movies.GetPopularMoviesUseCase
 import com.omongole.fred.yomovieapp.domain.usecases.movies.GetTopRatedMoviesUseCase
 import com.omongole.fred.yomovieapp.domain.usecases.movies.GetUpComingMoviesUseCase
+import com.omongole.fred.yomovieapp.domain.usecases.theme.RetrieveThemeModeUseCase
+import com.omongole.fred.yomovieapp.domain.usecases.theme.StoreThemeModeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -101,7 +101,7 @@ class HomeScreenViewModel @Inject constructor(
         }
     }
 
-    fun retrieveThemeMode() {
+    private fun retrieveThemeMode() {
         viewModelScope.launch {
             retrieveThemeModeUseCase.invoke().collectLatest {
                 _themeMode.value = it

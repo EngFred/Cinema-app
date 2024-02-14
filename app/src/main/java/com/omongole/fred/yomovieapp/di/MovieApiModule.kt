@@ -1,14 +1,19 @@
 package com.omongole.fred.yomovieapp.di
 
+import android.app.Application
 import android.content.Context
+import androidx.annotation.OptIn
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.preferencesDataStoreFile
-import androidx.room.Room
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import com.omongole.fred.yomovieapp.data.remote.services.MovieApi
 import com.omongole.fred.yomovieapp.domain.repository.MovieRepository
 import com.omongole.fred.yomovieapp.domain.repository.ShowsRepository
 import com.omongole.fred.yomovieapp.data.repository.MovieRepositoryImpl
 import com.omongole.fred.yomovieapp.data.repository.ShowsRepositoryImpl
+import com.omongole.fred.yomovieapp.presentation.viewModel.PlayerScreenViewModel
 import com.omongole.fred.yomovieapp.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -24,6 +29,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
+@OptIn(UnstableApi::class)
 object MovieApiModule {
 
     @Singleton
@@ -46,7 +52,7 @@ object MovieApiModule {
 
     @Singleton
     @Provides
-    fun providesMovieRepository( api: MovieApi) : MovieRepository = MovieRepositoryImpl( api )
+    fun providesMovieRepository( api: MovieApi ) : MovieRepository = MovieRepositoryImpl( api )
 
     @Singleton
     @Provides
@@ -57,5 +63,10 @@ object MovieApiModule {
     fun provideDatastoreInstance(  @ApplicationContext context : Context  ) = PreferenceDataStoreFactory.create {
         context.preferencesDataStoreFile("settings")
     }
+
+    @Singleton
+    @Provides
+    fun provideVideoPlayer( app: Application)  = ExoPlayer.Builder( app )
+        .setMediaSourceFactory(DefaultMediaSourceFactory(PlayerScreenViewModel.cacheDataSourceFactory)).build()
 
 }

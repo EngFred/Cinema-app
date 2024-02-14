@@ -3,7 +3,8 @@ package com.omongole.fred.yomovieapp.presentation.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.omongole.fred.yomovieapp.domain.modals.MovieDetailResponse
+import com.omongole.fred.yomovieapp.data.model.movies.MovieDetailDTO
+import com.omongole.fred.yomovieapp.domain.model.movies.MovieDetail
 import com.omongole.fred.yomovieapp.domain.usecases.movies.GetMovieDetailsUseCase
 import com.omongole.fred.yomovieapp.util.Resource
 import dagger.assisted.Assisted
@@ -20,7 +21,7 @@ class MovieDetailScreenViewModel @AssistedInject constructor(
     @Assisted private val id: Int
 ) : ViewModel() {
 
-    private val _movie = MutableStateFlow<Resource<MovieDetailResponse>>(Resource.Loading)
+    private val _movie = MutableStateFlow<Resource<MovieDetail>>(Resource.Loading)
     val movie = _movie.asStateFlow()
 
     init {

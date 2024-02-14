@@ -3,7 +3,8 @@ package com.omongole.fred.yomovieapp.presentation.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.omongole.fred.yomovieapp.domain.modals.ShowDetailResponse
+import com.omongole.fred.yomovieapp.data.model.shows.ShowDetailDTO
+import com.omongole.fred.yomovieapp.domain.model.shows.ShowDetail
 import com.omongole.fred.yomovieapp.domain.usecases.shows.GetShowDetailUseCase
 import com.omongole.fred.yomovieapp.util.Resource
 import dagger.assisted.Assisted
@@ -20,7 +21,7 @@ class ShowDetailScreenViewModel @AssistedInject constructor(
     @Assisted private val id: Int
 ) : ViewModel() {
 
-    private val _show = MutableStateFlow<Resource<ShowDetailResponse>>(Resource.Loading)
+    private val _show = MutableStateFlow<Resource<ShowDetail>>(Resource.Loading)
     val show = _show.asStateFlow()
 
     init {

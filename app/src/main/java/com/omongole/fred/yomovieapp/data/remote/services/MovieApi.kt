@@ -1,11 +1,11 @@
 package com.omongole.fred.yomovieapp.data.remote.services
 
 
-import com.omongole.fred.yomovieapp.domain.modals.GenresResponse
-import com.omongole.fred.yomovieapp.domain.modals.MovieDetailResponse
-import com.omongole.fred.yomovieapp.domain.modals.MovieResponse
-import com.omongole.fred.yomovieapp.domain.modals.ShowDetailResponse
-import com.omongole.fred.yomovieapp.domain.modals.ShowResponse
+import com.omongole.fred.yomovieapp.data.model.genres.GenresResponse
+import com.omongole.fred.yomovieapp.data.model.movies.MovieDetailDTO
+import com.omongole.fred.yomovieapp.data.model.movies.MovieResponse
+import com.omongole.fred.yomovieapp.data.model.shows.ShowDetailDTO
+import com.omongole.fred.yomovieapp.data.model.shows.ShowResponse
 import com.omongole.fred.yomovieapp.util.Constants.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -60,12 +60,12 @@ interface MovieApi {
     @GET("movie/{movie_id}?api_key=${API_KEY}")
     suspend fun fetchMovieDetail(
         @Path("movie_id") movieId: Int
-    ) : MovieDetailResponse
+    ) : MovieDetailDTO
 
     @GET("tv/{series_id}?api_key=${API_KEY}")
     suspend fun fetchShowDetail(
         @Path("series_id") showId: Int
-    ) : ShowDetailResponse
+    ) : ShowDetailDTO
 
     @GET("tv/top_rated?api_key=${API_KEY}")
     suspend fun fetchTopRatedTvShows(

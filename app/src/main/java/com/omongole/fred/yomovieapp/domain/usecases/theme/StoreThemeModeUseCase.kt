@@ -1,6 +1,6 @@
 package com.omongole.fred.yomovieapp.domain.usecases.theme
 
-import com.omongole.fred.yomovieapp.data.cache.PreferenceRepository
+import com.omongole.fred.yomovieapp.data.local.PreferenceRepository
 import javax.inject.Inject
 
 class StoreThemeModeUseCase @Inject constructor(

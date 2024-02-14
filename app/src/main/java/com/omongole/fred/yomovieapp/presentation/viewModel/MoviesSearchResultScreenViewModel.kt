@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.omongole.fred.yomovieapp.domain.modals.Movie
+import com.omongole.fred.yomovieapp.domain.model.movies.Movie
 import com.omongole.fred.yomovieapp.domain.usecases.movies.SearchMoviesUseCase
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory

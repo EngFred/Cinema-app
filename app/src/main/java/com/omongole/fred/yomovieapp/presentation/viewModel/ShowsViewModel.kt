@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.omongole.fred.yomovieapp.domain.modals.TvShow
+import com.omongole.fred.yomovieapp.data.model.shows.ShowDTO
+import com.omongole.fred.yomovieapp.domain.model.shows.Show
 import com.omongole.fred.yomovieapp.domain.usecases.shows.GetOnAirTvShowsUseCase
 import com.omongole.fred.yomovieapp.domain.usecases.shows.GetPopularTvShowsUseCase
 import com.omongole.fred.yomovieapp.domain.usecases.shows.GetTopRatedTvShowsUseCase
@@ -27,13 +28,13 @@ class ShowsViewModel  @Inject constructor(
 
     var searchQuery by mutableStateOf("")
 
-    private val _topRatedTvShows = MutableStateFlow<PagingData<TvShow>>(PagingData.empty())
+    private val _topRatedTvShows = MutableStateFlow<PagingData<Show>>(PagingData.empty())
     val topRatedTvShows = _topRatedTvShows.asStateFlow()
 
-    private val _popularTvShows = MutableStateFlow<PagingData<TvShow>>(PagingData.empty())
+    private val _popularTvShows = MutableStateFlow<PagingData<Show>>(PagingData.empty())
     val popularTvShows = _popularTvShows.asStateFlow()
 
-    private val _onAirTvShows = MutableStateFlow<PagingData<TvShow>>(PagingData.empty())
+    private val _onAirTvShows = MutableStateFlow<PagingData<Show>>(PagingData.empty())
     val onAirTvShows = _onAirTvShows.asStateFlow()
 
     init {
