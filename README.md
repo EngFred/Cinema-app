@@ -9,6 +9,15 @@
   <li><strong>Genre Filtering:</strong> Enables users to find movies and TV shows by genre.</li>
   <li><strong>Light and Dark Themes:</strong> Supports both light and dark themes for user preference.</li>
 </ul>
+<h2>Technologies</h2>
+<ul>
+  <li><strong>Android Development Kit:</strong> Foundation for building the Android application.</li>
+  <li><strong>Jetpack Compose:</strong> Modern UI toolkit for building declarative and composable user interfaces.</li>
+  <li><strong>Kotlin:</strong> Programming language used for development.</li>
+  <li><strong>MVVM Architecture:</strong> Separates concerns between Model, View, and ViewModel for better maintainability.</li>
+  <li><strong>Retrofit:</strong> Networking library for making HTTP requests to the TMDB and iTunes APIs.</li>
+  <li><strong>Clean Architecture:</strong> Promotes modularity and separation of concerns for better code organization.</li>
+</ul>
 <h2>Installation</h2>
 <ol>
   <li>Clone the repository to your local machine.</li>
