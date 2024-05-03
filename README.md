@@ -1,28 +1,33 @@
-A captivating Android application built with Kotlin and Jetpack Compose, fueled by the TMDB API, offering an immersive journey through popular, trending, and upcoming movies and TV shows.
-Leveraging the power of MVVM and clean code architecture, the app boasts a seamless user experience and maintainable codebase.
-Dive into rich details, watch trailers, and satisfy your cinematic desires.
-
-Features:
-
-Discover: Browse categorized movie and TV show listings curated by popularity, trend, and upcoming releases.
-Explore: Delve into detailed information and visuals for each title, including cast, crew, synopsis, and ratings.
-Preview: Immerse yourself in trailers with a single tap, igniting your cinematic anticipation.
-Clean Code: Appreciate the well-structured and easy-to-understand codebase, adhering to clean code principles.
-MVVM Architecture: Experience the clarity and separation of concerns offered by the Model-View-ViewModel architecture.
-
-Technology Stack:
-
-Kotlin: Modern and concise language for Android development.
-Jetpack Compose: Declarative and efficient UI framework for building intuitive interfaces.
-TMDB API: Robust source for movie and TV show data.
-MVVM Architecture: Separates concerns for clean and maintainable code.
-
-App Screenshots:
-
-![InShot_20240214_190515463](https://github.com/EngFred/Yo-Movie-App/assets/136785545/fad30b6a-d039-4d1e-9f6c-d848b245dfc4)
-
-![InShot_20240214_191200668](https://github.com/EngFred/Yo-Movie-App/assets/136785545/1491524c-6bda-4f09-abb5-e646c6290b45)
-
-![InShot_20240214_191251193](https://github.com/EngFred/Yo-Movie-App/assets/136785545/dfa1c024-5119-4b2a-bbeb-622e69c342ea)
-
-![InShot_20240214_191803124](https://github.com/EngFred/Yo-Movie-App/assets/136785545/5115ee0c-82a8-46d4-977f-3cb9fda9dd2b)
+<h1>Cinema</h1>
+<p>Cinema is a modern movie and TV show application for Android devices, built using Jetpack Compose, Kotlin, MVVM architecture, Retrofit for network calls, and Clean Architecture principles. It provides users with access to a vast collection of movies and TV shows sourced from The Movie Database (TMDB) API, including Now Playing, Popular, Top Rated movies, On Air, Top Rated, and Popular TV shows.</p>
+<h2>Features</h2>
+<ul>
+  <li><strong>TMDB Integration:</strong> Fetches movie and TV show data from The Movie Database (TMDB) API.</li>
+  <li><strong>Comprehensive Listings:</strong> Displays Now Playing, Popular, and Top Rated movies, as well as On Air, Top Rated, and Popular TV shows.</li>
+  <li><strong>Search Functionality:</strong> Allows users to search for movies and TV shows by title.</li>
+  <li><strong>Watch Trailers:</strong> Plays movie trailers using the iTunes API integration.</li>
+  <li><strong>Genre Filtering:</strong> Enables users to find movies and TV shows by genre.</li>
+  <li><strong>Light and Dark Themes:</strong> Supports both light and dark themes for user preference.</li>
+</ul>
+<h2>Installation</h2>
+<ol>
+  <li>Clone the repository to your local machine.</li>
+  <li>Open the project in Android Studio.</li>
+  <li>Build and run the app on your Android device or emulator.</li>
+</ol>
+<p>Alternatively, you can download the APK file from the releases page and install it on your device.</p>
+<h2>Usage</h2>
+<ol>
+  <li>Upon launching the app, browse through the home screen to discover Now Playing, Popular, and Top Rated movies, as well as On Air, Top Rated, and Popular TV shows.</li>
+  <li>Use the search feature to find specific movies or TV shows by title.</li>
+  <li>Explore movies and TV shows by genre using the genre filtering option.</li>
+  <li>Tap on a movie or TV show to view detailed information, including synopsis, ratings, and release date.</li>
+  <li>Watch trailers by selecting a movie and tapping the trailer button.</li>
+  <li>Enjoy a seamless experience with support for both light and dark themes.</li>
+</ol>
+<h2>Contributing</h2>
+<p>Contributions are welcome! If you find any bugs or have suggestions for improvement, please feel free to open an issue or submit a pull request.</p>
+<h2>Liscense</h2>
+<p>This project is licensed under the MIT License.</p>
+<h2>Screenshots</h2>
+<img src="https://github.com/EngFred/music-player/assets/136785545/95b6b98e-8503-472d-8667-13a672ce7502" alt="Images">
